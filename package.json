@@ -1,0 +1,22 @@
+{
+  "name": "microservices-node.js",
+  "version": "1.0.0",
+  "description": "Desafio de microserviço",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuanDeGregori/Microservice-Node.js.git"
+  },
+  "author": "Luan de Gregori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuanDeGregori/Microservice-Node.js/issues"
+  },
+  "homepage": "https://github.com/LuanDeGregori/Microservice-Node.js#readme",
+  "dependencies": {
+    "express": "4.16.3"
+  }
+}
