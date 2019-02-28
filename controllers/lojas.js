@@ -28,4 +28,22 @@ module.exports = function(app){
             res.status(201).json(loja);
         });
     });
+
+    app.put('/lojas/:id', (req, res) =>{
+        var loja = req.body;
+        var id = req.params.id;
+        loja.id = id;
+
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);
+
+        lojaDao.atualiza(loja, (erro)=>{
+            if(erro){
+                res.status(500).send(erro);
+                res.send(loja);
+            }
+            console.log("Loja Atualizada");
+            res.send(loja);
+        });
+    });
 }
