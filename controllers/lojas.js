@@ -41,6 +41,7 @@ module.exports = function(app){
             if(erro){
                 res.status(500).send(erro);
                 res.send(loja);
+                return;
             }
             console.log("Loja Atualizada");
             res.send(loja);
@@ -48,7 +49,7 @@ module.exports = function(app){
     });
 
     app.delete('/lojas/:id',(req,res)=>{
-        var loja = req.body;
+        //var loja = req.body;
         var id = req.params.id;
 
         var connection = app.persistencia.connectionFactory();
@@ -61,6 +62,40 @@ module.exports = function(app){
             }
             console.log('Loja Excluida');
             res.status(204).send();
+        });
+    });
+
+    app.get('/lojas/buscaId/:id', (req,res)=>{
+        var id = req.params.id;
+
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);
+
+        lojaDao.buscaPorId(id,(erro,resultado)=>{
+            if (erro){
+                console.log("Erro ao buscar loja.")
+                res.status(500).send(erro);
+                return;
+            }
+            console.log("Loja encontrada por id: " + resultado);
+            res.json(resultado);
+        });
+    });
+
+    app.get('/lojas/BuscaEstado/:estado', (req,res)=>{
+        var estado = req.params.estado;
+
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);
+        
+        lojaDao.buscaPorEstado(estado,(erro,resultado)=>{
+            if (erro){
+                console.log("Erro ao buscar loja.")
+                res.status(500).send(erro);
+                return;
+            }
+            console.log("Loja encontrada por estado: " + resultado);
+            res.json(resultado);
         });
     });
 }
