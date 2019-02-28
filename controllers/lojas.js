@@ -46,4 +46,21 @@ module.exports = function(app){
             res.send(loja);
         });
     });
+
+    app.delete('/lojas/:id',(req,res)=>{
+        var loja = req.body;
+        var id = req.params.id;
+
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);
+
+        lojaDao.exclui(id, (erro)=>{
+            if (erro){
+                res.status(500).send(erro);
+                return;
+            }
+            console.log('Loja Excluida');
+            res.status(204).send();
+        });
+    });
 }

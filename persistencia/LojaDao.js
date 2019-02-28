@@ -6,6 +6,10 @@ function LojaDao(connection) {
       this._connection.query('INSERT INTO lojas SET ?', loja, callback);
   }
 
+  LojaDao.prototype.exclui = function (id,callback) {
+    this._connection.query("delete from lojas where id = ?",[id],callback);
+  }
+
   LojaDao.prototype.lista = function(callback) {
       this._connection.query('select * from lojas',callback);
   }
