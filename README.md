@@ -18,3 +18,8 @@ CREATE TABLE `lojas` (
   );
  ```
   
+Para testar a API, recomendo utilizar o Postman e a seguinte coleção: 
+https://www.getpostman.com/collections/3b8aa31a3982c205b6aa
+
+Imagen do NodeJs construida com as configurações da API no Docker Hub:                 https://cloud.docker.com/u/luanhgdg/repository/docker/luanhgdg/node
+
