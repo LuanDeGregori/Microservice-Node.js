@@ -28,6 +28,10 @@ function LojaDao(connection) {
     this._connection.query("select * from lojas where estado = ?",[estado],callback);
 }
 
+LojaDao.prototype.buscaPorEstadoCidade = function (estado,cidade,callback) {
+  this._connection.query("select * from lojas where estado = ? && cidade = ?",[estado,cidade],callback);
+}
+
   module.exports = function(){
       return LojaDao;
   };
