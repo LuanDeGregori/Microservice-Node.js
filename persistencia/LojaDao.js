@@ -27,9 +27,16 @@ function LojaDao(connection) {
   LojaDao.prototype.buscaPorEstado = function (estado,callback) {
     this._connection.query("select * from lojas where estado = ?",[estado],callback);
 }
+  LojaDao.prototype.buscaTudo = function (callback) {
+    this._connection.query("select * from lojas",callback);
+}
 
 LojaDao.prototype.buscaPorEstadoCidade = function (estado,cidade,callback) {
   this._connection.query("select * from lojas where estado = ? && cidade = ?",[estado,cidade],callback);
+}
+
+LojaDao.prototype.buscaPorEstadoECidades = function (estado, callback) {
+  this._connection.query(" select * from lojas where (cidade = ? || cidade = ? || cidade =?) && estado =?",[cidade1, cidade2, cidade3, estado],callback);
 }
 
   module.exports = function(){
